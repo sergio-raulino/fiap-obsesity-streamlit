@@ -1,0 +1,51 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+
+# =========================
+# Ambientes virtuais
+# =========================
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+# Ferramentas de dados / ML
+# =========================
+model.joblib
+metrics.json
+
+# =========================
+# Cache e temporários
+# =========================
+.cache/
+.ipynb_checkpoints/
+*.log
+*.tmp
+
+# =========================
+# Streamlit
+# =========================
+.streamlit/
+
+# =========================
+# IDEs / Editores
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Sistema operacional
+# =========================
+.DS_Store
+Thumbs.db

@@ -1,0 +1,167 @@
+# **Relatório Técnico — Sistema Preditivo para Diagnóstico do Nível de Obesidade**
+
+## 1. Introdução
+
+A obesidade é reconhecida como um dos principais problemas de saúde pública mundial, estando associada ao aumento do risco de diversas doenças crônicas, como diabetes tipo 2, hipertensão arterial, doenças cardiovasculares e certos tipos de câncer. Diante desse cenário, o uso de técnicas de *Machine Learning* pode contribuir de forma significativa para apoiar equipes médicas no diagnóstico e na estratificação do nível de obesidade de pacientes, auxiliando a tomada de decisão clínica.
+
+Este trabalho tem como objetivo desenvolver um sistema preditivo baseado em *Machine Learning*, utilizando dados antropométricos, comportamentais e hábitos de vida, capaz de classificar indivíduos em diferentes níveis de obesidade, conforme definido no dicionário de dados fornecido no desafio.
+
+---
+
+## 2. Descrição do Dataset
+
+O conjunto de dados utilizado (`Obesity.csv`) contém informações de indivíduos com idades entre 14 e 61 anos, abrangendo variáveis numéricas, categóricas e ordinais. A variável alvo do problema é a coluna **`Obesity`**, que representa o nível de obesidade do indivíduo, com sete classes distintas:
+
+* *Insufficient_Weight*
+* *Normal_Weight*
+* *Overweight_Level_I*
+* *Overweight_Level_II*
+* *Obesity_Type_I*
+* *Obesity_Type_II*
+* *Obesity_Type_III*
+
+As variáveis explicativas incluem informações demográficas (ex.: gênero, idade), medidas físicas (altura e peso), hábitos alimentares, consumo de água, prática de atividade física, consumo de álcool e meio de transporte utilizado.
+
+---
+
+## 3. Pré-processamento e Feature Engineering
+
+### 3.1 Tratamento de Variáveis Ordinais
+
+Algumas variáveis do dataset representam escalas ordinais, porém apresentam valores decimais devido a ruídos no processo de coleta de dados. São elas:
+
+* `FCVC` — frequência de consumo de vegetais
+* `NCP` — número de refeições principais
+* `CH2O` — consumo diário de água
+* `FAF` — frequência de atividade física
+* `TUE` — tempo de uso de dispositivos eletrônicos
+
+Para preservar o significado semântico dessas variáveis, foi adotada a seguinte estratégia:
+
+* Conversão explícita para tipo numérico;
+* Arredondamento para o inteiro mais próximo;
+* Aplicação de *clipping* para garantir que os valores permaneçam dentro do domínio definido no dicionário de dados.
+
+Esse procedimento evita que o modelo aprenda padrões artificiais decorrentes de ruído decimal e garante maior aderência ao conhecimento do domínio.
+
+---
+
+### 3.2 Tratamento de Valores Ausentes
+
+O pipeline de pré-processamento foi estruturado utilizando o conceito de *pipelines* do Scikit-Learn, com estratégias distintas para variáveis numéricas e categóricas:
+
+* **Variáveis numéricas**: imputação pela mediana, estratégia robusta a outliers;
+* **Variáveis categóricas**: imputação pelo valor mais frequente.
+
+---
+
+### 3.3 Codificação e Escalonamento
+
+* Variáveis categóricas foram transformadas por meio de **One-Hot Encoding**, permitindo que o modelo interprete corretamente variáveis nominais sem impor ordens artificiais.
+* Variáveis numéricas foram padronizadas com **StandardScaler**, garantindo que todas as features estejam em escalas comparáveis e facilitando o processo de aprendizado do modelo.
+
+---
+
+## 4. Modelo de Machine Learning
+
+O algoritmo escolhido para o problema foi o **Gradient Boosting Classifier**, por apresentar bom desempenho em problemas de classificação multiclasse, além de ser robusto a relações não lineares entre as variáveis.
+
+A escolha desse modelo se justifica por:
+
+* Capacidade de capturar interações complexas entre variáveis antropométricas e comportamentais;
+* Bom equilíbrio entre viés e variância;
+* Desempenho consistente em bases tabulares heterogêneas.
+
+Todo o fluxo de pré-processamento e treinamento foi encapsulado em um único **Pipeline**, garantindo reprodutibilidade e evitando vazamento de dados (*data leakage*).
+
+---
+
+## 5. Treinamento e Avaliação
+
+O conjunto de dados foi dividido em:
+
+* **80%** para treinamento;
+* **20%** para teste,
+
+utilizando estratificação pela variável alvo, de modo a preservar a proporção das classes em ambos os conjuntos.
+
+A métrica principal utilizada para avaliação foi a **acurácia**, complementada pelo **relatório de classificação** (precision, recall e F1-score).
+
+O modelo treinado obteve **acurácia superior a 75%**, atendendo ao requisito mínimo estabelecido no desafio, com desempenho consistente entre as diferentes classes.
+
+---
+
+## 6. Deploy do Sistema Preditivo
+
+Para disponibilizar o modelo de forma interativa, foi desenvolvida uma aplicação utilizando **Streamlit**, composta por duas seções principais:
+
+### 6.1 Página de Predição
+
+Permite a inserção manual dos dados do paciente por meio de um formulário, respeitando as categorias e escalas definidas no dicionário de dados. O sistema retorna:
+
+* Classe prevista do nível de obesidade;
+* Probabilidades associadas a cada classe (quando suportado pelo modelo).
+
+### 6.2 Painel Analítico
+
+Apresenta visualizações que auxiliam a interpretação dos dados e do modelo, incluindo:
+
+* Distribuição das classes de obesidade;
+* Análise do **IMC (BMI)** por classe, evidenciando a relação entre peso, altura e nível de obesidade;
+* Métricas de desempenho do modelo.
+
+---
+
+## 7. Conclusão
+
+O sistema desenvolvido demonstra como técnicas de *Machine Learning* podem ser aplicadas de forma prática para apoiar a tomada de decisão na área da saúde. A adoção de uma pipeline bem estruturada, aliada a cuidados no pré-processamento e à utilização de um modelo robusto, resultou em um classificador com desempenho satisfatório e alinhado aos requisitos do desafio.
+
+Além do modelo preditivo, a aplicação interativa e o painel analítico fornecem transparência e interpretabilidade, aspectos fundamentais para o uso de sistemas inteligentes em contextos médicos.
+
+
+Excelente escolha — essa seção é **um diferencial claro** em avaliações acadêmicas (FIAP costuma valorizar muito).
+Abaixo está um texto **pronto para colar no relatório**, no mesmo tom formal do restante do documento.
+
+---
+
+## 8. Justificativa Ética e Limitações do Modelo
+
+### 8.1 Considerações Éticas
+
+A aplicação de modelos de *Machine Learning* na área da saúde exige atenção especial a aspectos éticos, uma vez que decisões automatizadas podem impactar diretamente a vida e o bem-estar dos indivíduos. O sistema desenvolvido neste trabalho foi concebido como **ferramenta de apoio à decisão**, e não como substituto da avaliação clínica realizada por profissionais de saúde.
+
+O modelo utiliza exclusivamente dados demográficos, antropométricos e comportamentais, não incluindo informações sensíveis como identificação pessoal, histórico clínico detalhado ou dados biomédicos invasivos. Dessa forma, o risco relacionado à privacidade e à exposição de dados sensíveis é reduzido, desde que boas práticas de governança e segurança da informação sejam adotadas no armazenamento e uso do sistema.
+
+Outro ponto relevante diz respeito a possíveis **viéses algorítmicos**. Variáveis como gênero, hábitos de vida e padrões de consumo podem refletir desigualdades sociais e culturais presentes no conjunto de dados. Embora essas variáveis sejam relevantes para o contexto do problema, seus impactos devem ser interpretados com cautela, evitando conclusões determinísticas ou discriminatórias. A utilização de métricas globais e a análise do desempenho por classe contribuem para mitigar esse risco, mas não o eliminam completamente.
+
+Além disso, é fundamental garantir transparência na utilização do sistema. A disponibilização de métricas de desempenho, bem como de painéis analíticos que permitam compreender os padrões aprendidos pelo modelo, favorece a interpretabilidade e reduz o risco de uso indevido das predições.
+
+---
+
+### 8.2 Limitações do Modelo
+
+Apesar dos resultados satisfatórios obtidos, o modelo apresenta limitações que devem ser reconhecidas:
+
+1. **Dependência de dados autorrelatados**
+   Muitas variáveis do dataset (hábitos alimentares, consumo de água, atividade física e uso de dispositivos eletrônicos) são baseadas em autorrelato, estando sujeitas a imprecisões, vieses de memória e interpretação subjetiva dos respondentes.
+
+2. **Generalização limitada**
+   O modelo foi treinado em um conjunto de dados específico, que pode não representar adequadamente todas as populações, faixas etárias, contextos culturais ou socioeconômicos. Dessa forma, seu desempenho pode variar quando aplicado a populações distintas daquelas presentes no dataset original.
+
+3. **Ausência de variáveis clínicas**
+   O sistema não considera informações clínicas relevantes, como exames laboratoriais, histórico médico ou condições metabólicas específicas. Portanto, o diagnóstico fornecido deve ser interpretado como uma **classificação baseada em padrões estatísticos**, e não como diagnóstico médico definitivo.
+
+4. **Natureza correlacional do modelo**
+   O modelo identifica correlações entre variáveis, mas não estabelece relações de causalidade. Assim, não é possível inferir que determinado hábito seja a causa direta do nível de obesidade previsto, apenas que existe associação estatística dentro do conjunto de dados analisado.
+
+5. **Simplificação de variáveis ordinais**
+   O arredondamento de variáveis ordinais com ruído decimal, embora necessário para preservar coerência semântica, pode levar à perda de informação marginal. Essa decisão representa um compromisso entre fidelidade estatística e aderência ao domínio do problema.
+
+---
+
+### 8.3 Uso Responsável do Sistema
+
+Diante dessas limitações, recomenda-se que o sistema seja utilizado exclusivamente como **ferramenta complementar** no contexto de triagem, análise exploratória ou apoio à decisão. Qualquer intervenção clínica deve ser baseada na avaliação integral do paciente por profissionais qualificados.
+
+A adoção de mecanismos de monitoramento contínuo do desempenho do modelo, bem como sua reavaliação periódica com novos dados, é essencial para garantir sua confiabilidade, justiça e alinhamento ético ao longo do tempo.
+
