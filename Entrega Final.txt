@@ -1,0 +1,32 @@
+Links da Aplicação e Código-Fonte
+Aplicação Preditiva (Streamlit)
+
+Link da aplicação Streamlit (Predição):
+👉 https://fiap-obsesity-app-sergio-raulino.streamlit.app/
+
+Link do painel analítico (integrado à aplicação):
+👉 https://fiap-obsesity-app-sergio-raulino.streamlit.app/
+(O painel analítico está disponível via navegação lateral da aplicação)
+
+Repositório do Código-Fonte
+
+Repositório GitHub com todo o código desenvolvido:
+👉 https://github.com/sergio-raulino/fiap-obsesity-streamlit#
+
+O repositório contém:
+
+Pipeline completo de Machine Learning;
+
+Scripts de pré-processamento e treinamento;
+
+Aplicação Streamlit com sistema preditivo e painel analítico;
+
+Arquivos de configuração (requirements.txt, .gitignore, Makefile);
+
+Documentação técnica (README.md).
+
+Observações sobre o Deploy
+
+A aplicação foi desenvolvida utilizando o framework Streamlit, permitindo deploy simples e rápido em ambiente cloud. 
+A solução possibilita acesso remoto ao modelo preditivo e ao painel analítico, 
+facilitando a demonstração e avaliação da aplicação em ambiente acadêmico.
