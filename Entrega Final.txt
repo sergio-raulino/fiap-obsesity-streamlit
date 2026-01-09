@@ -15,18 +15,18 @@ Repositório GitHub com todo o código desenvolvido:
 
 O repositório contém:
 
-Pipeline completo de Machine Learning;
+    Pipeline completo de Machine Learning;
+    Scripts de pré-processamento e treinamento;
+    Aplicação Streamlit com sistema preditivo e painel analítico;
+    Arquivos de configuração (requirements.txt, .gitignore, Makefile);
+    Documentação técnica (README.md);
+    Documentação negocial (Visão Analítica - Painel de Insights.docx e Visão Analítica - Painel de Insights.docx)
 
-Scripts de pré-processamento e treinamento;
-
-Aplicação Streamlit com sistema preditivo e painel analítico;
-
-Arquivos de configuração (requirements.txt, .gitignore, Makefile);
-
-Documentação técnica (README.md).
-
+Link com o vídeo da apresentação da entrega (de 4 a 10 min): 
+👉 https://we.tl/t-nKgtgzsxrw (obs: valido por 3 dias)
 Observações sobre o Deploy
 
-A aplicação foi desenvolvida utilizando o framework Streamlit, permitindo deploy simples e rápido em ambiente cloud. 
-A solução possibilita acesso remoto ao modelo preditivo e ao painel analítico, 
+👉 A aplicação foi desenvolvida utilizando o framework Streamlit, permitindo deploy simples e rápido em ambiente cloud. 
+👉 A solução possibilita acesso remoto ao modelo preditivo e ao painel analítico, 
 facilitando a demonstração e avaliação da aplicação em ambiente acadêmico.
+

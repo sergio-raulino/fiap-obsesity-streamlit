@@ -1,0 +1,39 @@
+📊 ENTREGA 1 — Visão Analítica (Painel de Insights para a Equipe Médica)
+Visão Analítica do Estudo sobre Obesidade
+
+Com o objetivo de apoiar a equipe médica na compreensão dos fatores associados aos diferentes níveis de obesidade, foi desenvolvido um painel analítico interativo, integrado à aplicação Streamlit, que permite a exploração visual dos dados e dos resultados do modelo preditivo.
+
+1. Distribuição dos Níveis de Obesidade
+
+O painel apresenta a distribuição das classes da variável alvo Obesity, permitindo identificar a proporção de indivíduos em cada categoria (abaixo do peso, peso normal, sobrepeso e obesidade em seus diferentes níveis).
+
+Insight clínico:
+A visualização evidencia o desbalanceamento natural entre as classes, refletindo a maior incidência de indivíduos com sobrepeso e obesidade nos dados analisados. Esse tipo de informação é relevante para direcionar políticas de prevenção e estratégias de intervenção em saúde pública.
+
+2. Análise do Índice de Massa Corporal (IMC) por Classe
+
+A partir das variáveis Weight e Height, foi calculado o Índice de Massa Corporal (BMI) e exibido um boxplot do BMI segmentado por classe de obesidade.
+
+Insight clínico:
+Observa-se uma separação progressiva das distribuições de BMI entre as classes, validando a coerência do dataset e confirmando que o modelo aprende padrões alinhados a critérios médicos amplamente aceitos. Além disso, a sobreposição parcial entre classes adjacentes (ex.: Overweight Level II e Obesity Type I) reforça a importância do uso de múltiplas variáveis comportamentais para refinamento da classificação.
+
+3. Métricas de Desempenho do Modelo
+
+O painel também exibe as métricas de desempenho do modelo treinado, incluindo:
+
+Acurácia no conjunto de teste;
+
+Resumo do relatório de classificação (médias macro e ponderada).
+
+Insight clínico:
+A acurácia superior a 75% indica que o modelo apresenta desempenho satisfatório para uso como ferramenta de apoio à decisão, com comportamento consistente entre as classes, reduzindo o risco de classificações enviesadas para categorias específicas.
+
+4. Apoio à Tomada de Decisão Médica
+
+O painel analítico não tem como objetivo fornecer diagnóstico clínico definitivo, mas sim:
+
+Apoiar a triagem inicial de pacientes;
+
+Identificar padrões comportamentais associados à obesidade;
+
+Facilitar a comunicação entre dados e prática clínica, por meio de visualizações intuitivas.

@@ -24,6 +24,8 @@ obesity_streamlit/
 ├── model.joblib        # gerado (ignorado pelo git)
 └── metrics.json        # gerado (ignorado pelo git)
 
+“A pipeline realiza tratamento explícito de variáveis ordinais com ruído decimal, garantindo coerência semântica com o dicionário de dados fornecido.”
+
 ## Como executar
 
 ### 1) Instalar dependências
